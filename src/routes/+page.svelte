@@ -107,36 +107,42 @@
 		</div>
 	</div>
 
-	{#if minimal}
+	{#if minimal || passphrase || streamId}
 		<div class="animate-fade-in space-y-6" aria-live="polite" aria-atomic="true">
-			<div
-				class="rounded-xl border border-blue-100 bg-blue-50/60 p-4 shadow-sm"
-				role="region"
-				aria-labelledby="streaming-url-heading"
-			>
-				<div class="mb-1 flex items-center justify-between">
-					<h2
-						id="streaming-url-heading"
-						class="flex items-center gap-1 font-semibold text-blue-700"
-					>
-						<span class="text-lg" aria-hidden="true">📡</span> Streaming Server (URL)
-					</h2>
-					<button
-						type="button"
-						on:click={() => copy(minimal, 'URL')}
-						class="inline-flex items-center gap-1 rounded-lg bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-700 transition hover:bg-blue-200 active:bg-blue-300"
-						aria-label="Copy streaming server URL to clipboard"
-					>
-						<span class="text-base" aria-hidden="true">📄</span> Copy
-					</button>
+			{#if minimal}
+				<div
+					in:fade={{ duration: 300 }}
+					out:fade={{ duration: 300 }}
+					class="rounded-xl border border-blue-100 bg-blue-50/60 p-4 shadow-sm"
+					role="region"
+					aria-labelledby="streaming-url-heading"
+				>
+					<div class="mb-1 flex items-center justify-between">
+						<h2
+							id="streaming-url-heading"
+							class="flex items-center gap-1 font-semibold text-blue-700"
+						>
+							<span class="text-lg" aria-hidden="true">📡</span> Streaming Server (URL)
+						</h2>
+						<button
+							type="button"
+							on:click={() => copy(minimal, 'URL')}
+							class="inline-flex items-center gap-1 rounded-lg bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-700 transition hover:bg-blue-200 active:bg-blue-300"
+							aria-label="Copy streaming server URL to clipboard"
+						>
+							<span class="text-base" aria-hidden="true">📄</span> Copy
+						</button>
+					</div>
+					<pre
+						class="mt-2 overflow-x-auto rounded-md bg-gray-900 p-3 font-mono text-sm break-all text-gray-400"
+						tabIndex="0"><code>{minimal}</code></pre>
 				</div>
-				<pre
-					class="font-mono mt-2 overflow-x-auto rounded-md bg-gray-900 p-3 text-sm break-all text-gray-400"
-					tabIndex="0"><code>{minimal}</code></pre>
-			</div>
+			{/if}
 
 			{#if passphrase}
 				<div
+					in:fade={{ duration: 300 }}
+					out:fade={{ duration: 300 }}
 					class="rounded-xl border border-amber-100 bg-amber-50/60 p-4 shadow-sm"
 					role="region"
 					aria-labelledby="stream-passphrase-heading"
@@ -158,13 +164,15 @@
 						</button>
 					</div>
 					<pre
-						class="font-mono mt-2 overflow-x-auto rounded-md bg-gray-900 p-3 text-sm break-all text-gray-400"
+						class="mt-2 overflow-x-auto rounded-md bg-gray-900 p-3 font-mono text-sm break-all text-gray-400"
 						tabIndex="0"><code>{passphrase}</code></pre>
 				</div>
 			{/if}
 
 			{#if streamId}
 				<div
+					in:fade={{ duration: 300 }}
+					out:fade={{ duration: 300 }}
 					class="rounded-xl border border-purple-100 bg-purple-50/60 p-4 shadow-sm"
 					role="region"
 					aria-labelledby="stream-id-heading"
@@ -186,7 +194,7 @@
 						</button>
 					</div>
 					<pre
-						class="font-mono mt-2 overflow-x-auto rounded-md bg-gray-900 p-3 text-sm break-all text-gray-400"
+						class="mt-2 overflow-x-auto rounded-md bg-gray-900 p-3 font-mono text-sm break-all text-gray-400"
 						tabIndex="0"><code>{streamId}</code></pre>
 				</div>
 			{/if}
