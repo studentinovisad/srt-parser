@@ -77,7 +77,10 @@
 			class="mt-2 max-w-md text-center text-base text-gray-500 sm:text-lg"
 			id="srt-parser-instructions"
 		>
-			Paste your full SRT link. We’ll give you the important parts you need.
+			Paste your full SRT link. We’ll extract the key parts you need to input into <a
+				class="text-blue-600 underline"
+				href="https://play.google.com/store/apps/details?id=app.irlpro.android">IRL Pro</a
+			>’s settings to get it working.
 		</p>
 	</div>
 
