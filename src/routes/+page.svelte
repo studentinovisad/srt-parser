@@ -45,6 +45,17 @@
 		}
 	}
 
+	function copyAll() {
+		const lines = [
+			'Name: B.INFO',
+			minimal && `URL: ${minimal}`,
+			passphrase && `Passphrase: ${passphrase}`,
+			streamId && `Stream ID: ${streamId}`
+		].filter(Boolean);
+		const formatted = lines.join('\n');
+		copy(formatted, 'All Info');
+	}
+
 	async function pasteFromClipboard() {
 		try {
 			const text = await navigator.clipboard.readText();
@@ -84,7 +95,7 @@
 		</p>
 	</div>
 
-	<div class="mb-8">
+	<div class="mb-2.5">
 		<label for="url" class="mb-2 block text-sm font-semibold text-gray-700">
 			Paste full SRT link:
 		</label>
@@ -108,8 +119,20 @@
 				<span class="text-lg" aria-hidden="true">📋</span> Paste
 			</button>
 		</div>
+		{#if minimal || passphrase || streamId}
+			<div class="animate-fade-in mt-2.5 w-full">
+				<button
+					type="button"
+					on:click={copyAll}
+					class="inline-flex w-full items-center justify-center gap-1 rounded-lg bg-green-100 px-3 py-1.5 text-xs font-medium text-green-700 transition hover:bg-green-200 active:bg-green-300"
+					aria-label="Copy all connection info to clipboard"
+				>
+					<span class="text-base" aria-hidden="true">📄</span>
+					Want to share parsed content? Click here to copy the entire config!
+				</button>
+			</div>
+		{/if}
 	</div>
-
 	{#if minimal || passphrase || streamId}
 		<div class="animate-fade-in space-y-6" aria-live="polite" aria-atomic="true">
 			{#if minimal}
