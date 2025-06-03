@@ -1,32 +1,12 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 
-	let inputUrl = '';
-	let minimal = '';
-	let passphrase = '';
-	let streamId = '';
-	let copied = '';
-	let showCopied = false;
-
-	function doParseUrl() {
-		try {
-			const url = new URL(inputUrl);
-			const searchParams = new URLSearchParams(url.search);
-
-			passphrase = searchParams.get('passphrase') ?? '';
-			streamId = searchParams.get('streamid') ?? '';
-
-			const minimalParams = new URLSearchParams();
-			const transtype = searchParams.get('transtype');
-			if (transtype) minimalParams.set('transtype', transtype);
-
-			minimal = `${url.protocol}//${url.host}?${minimalParams.toString()}`;
-		} catch {
-			minimal = '';
-			passphrase = '';
-			streamId = '';
-		}
-	}
+	let inputUrl = $state('');
+	let minimal = $state('');
+	let passphrase = $state('');
+	let streamId = $state('');
+	let copied = $state('');
+	let showCopied = $state(false);
 
 	async function copy(text: string, label: string) {
 		try {
@@ -69,7 +49,25 @@
 		}
 	}
 
-	$: inputUrl, doParseUrl();
+	$effect(() => {
+		try {
+			const url = new URL(inputUrl);
+			const searchParams = new URLSearchParams(url.search);
+
+			passphrase = searchParams.get('passphrase') ?? '';
+			streamId = searchParams.get('streamid') ?? '';
+
+			const minimalParams = new URLSearchParams();
+			const transtype = searchParams.get('transtype');
+			if (transtype) minimalParams.set('transtype', transtype);
+
+			minimal = `${url.protocol}//${url.host}?${minimalParams.toString()}`;
+		} catch {
+			minimal = '';
+			passphrase = '';
+			streamId = '';
+		}
+	});
 </script>
 
 <main class="mx-auto max-w-xl p-4 font-sans text-gray-900 sm:p-8">
