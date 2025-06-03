@@ -109,7 +109,7 @@
 				autocomplete="off"
 			/>
 			<button
-				on:click={pasteFromClipboard}
+				onclick={pasteFromClipboard}
 				type="button"
 				class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 active:bg-gray-200"
 				aria-label="Paste SRT link from clipboard"
@@ -121,7 +121,7 @@
 			<div class="animate-fade-in mt-2.5 w-full">
 				<button
 					type="button"
-					on:click={copyAll}
+					onclick={copyAll}
 					class="inline-flex w-full items-center justify-center gap-1 rounded-lg bg-green-100 px-3 py-1.5 text-xs font-medium text-green-700 transition hover:bg-green-200 active:bg-green-300"
 					aria-label="Copy all connection info to clipboard"
 				>
@@ -150,7 +150,7 @@
 						</h2>
 						<button
 							type="button"
-							on:click={() => copy(minimal, 'URL')}
+							onclick={() => copy(minimal, 'URL')}
 							class="inline-flex items-center gap-1 rounded-lg bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-700 transition hover:bg-blue-200 active:bg-blue-300"
 							aria-label="Copy streaming server URL to clipboard"
 						>
@@ -180,7 +180,7 @@
 						</h2>
 						<button
 							type="button"
-							on:click={() => copy(passphrase, 'Passphrase')}
+							onclick={() => copy(passphrase, 'Passphrase')}
 							class="inline-flex items-center gap-1 rounded-lg bg-amber-100 px-3 py-1.5 text-xs font-medium text-amber-700 transition hover:bg-amber-200 active:bg-amber-300"
 							aria-label="Copy stream passphrase to clipboard"
 						>
@@ -210,7 +210,7 @@
 						</h2>
 						<button
 							type="button"
-							on:click={() => copy(streamId, 'Stream ID')}
+							onclick={() => copy(streamId, 'Stream ID')}
 							class="inline-flex items-center gap-1 rounded-lg bg-purple-100 px-3 py-1.5 text-xs font-medium text-purple-700 transition hover:bg-purple-200 active:bg-purple-300"
 							aria-label="Copy stream ID to clipboard"
 						>
